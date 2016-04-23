@@ -1,14 +1,12 @@
 package com.aquariusmaster.phonebook.entity;
 
 import junit.framework.TestCase;
-import junit.framework.TestResult;
 import org.junit.Test;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -31,7 +29,7 @@ public class PhoneEntryTest extends TestCase {
         assertEquals("Expect telephone 123456", "123456", ivanov.getTel());
         assertEquals("Expect address Kiev", "Kiev", ivanov.getAddress());
         assertEquals("Expect email mail@mail.ru", "mail@mail.ru", ivanov.getEmail());
-        assertEquals("Expect user id = 0", 0, ivanov.getUserId());
+        assertEquals("Expect username = I", "I", ivanov.getUsername());
 
         PhoneEntry petrov = new PhoneEntry();
         assertNotEquals(ivanov, petrov);
@@ -52,6 +50,7 @@ public class PhoneEntryTest extends TestCase {
         petrov.setTel("123456");
         petrov.setAddress("Kiev");
         petrov.setEmail("mail@mail.ru");
+        petrov.setUsername("I");
 
         assertEquals("Must be equals", ivanov, petrov);
 
@@ -86,7 +85,7 @@ public class PhoneEntryTest extends TestCase {
         ivanov.setTel("123456");
         ivanov.setAddress("Kiev");
         ivanov.setEmail("mail@mail.ru");
-        ivanov.setUserId(0);
+        ivanov.setUsername("I");
 
         return ivanov;
     }

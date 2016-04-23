@@ -10,6 +10,9 @@ import java.util.List;
 public interface PhoneEntryDao {
 
     List<PhoneEntry> getAllPhoneEntry();
-    List<PhoneEntry> getPhoneEntryByUser(long userId);
-
+    List<PhoneEntry> getPhoneEntries(String username);
+    boolean save(PhoneEntry phoneEntry);
+    boolean update(PhoneEntry phoneEntry);
+    boolean delete(long id);
+    PhoneEntry getPhoneEntry(long id);
 }

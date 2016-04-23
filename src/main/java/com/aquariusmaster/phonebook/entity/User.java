@@ -15,15 +15,21 @@ public class User {
     private String password;
     @Size(min=5)
     private String fullname;
+    @Pattern(regexp = "^(?:[a-zA-Z0-9_'^&/+-])+(?:\\.(?:[a-zA-Z0-9_'^&/+-])+)" +
+            "*@(?:(?:\\[?(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\.)" +
+            "{3}(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\]?)|(?:[a-zA-Z0-9-]+\\.)" +
+            "+(?:[a-zA-Z]){2,}\\.?)$")
+    private String email;
     private boolean enabled = false;
     private String authority;
 
     public User(){}
 
-    public User(String username, String password, String fullname, boolean enabled, String authority) {
+    public User(String username, String password, String fullname, String email, boolean enabled, String authority) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;
+        this.email = email;
         this.enabled = enabled;
         this.authority = authority;
     }
@@ -51,6 +57,10 @@ public class User {
     public void setFullname(String fullname) {
         this.fullname = fullname;
     }
+
+    public String getEmail() { return email;}
+
+    public void setEmail(String email) { this.email = email;}
 
     public boolean isEnabled() {
         return enabled;
@@ -90,6 +100,7 @@ public class User {
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", fullname='" + fullname + '\'' +
+                ", email='" + email + '\'' +
                 ", enabled=" + enabled +
                 ", authority='" + authority + '\'' +
                 '}';

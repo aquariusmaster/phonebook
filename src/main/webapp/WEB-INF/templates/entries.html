@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/head :: head">
+</head>
+<head>
+    <title>List of phone entries</title>
+    <script th:src="@{/resources/js/jquery.min.js}"></script>
+    <script>
+        function del(href){
+            var doDelete = confirm("Are you sure you want to delete this offer?");
+
+            if(doDelete == false) {
+                event.preventDefault();
+            }else{
+                location.href=href
+            }
+        }
+    </script>
+</head>
+<body>
+<div th:include="fragments/layout :: header"></div>
+<div style="padding-top: 60px"></div>
+<div class="container">
+    <div class="row row-content">
+        <div id="mes" th:if="${message!=null}" class="alert alert-info" onload='mes()'>
+            <p th:text="${message}" align="center"></p>
+            <script>
+                $( "#mes" ).show(0).delay(5000).hide(0);
+            </script>
+        </div>
+        <div class="col-xs-12" th:if="${!(entries.isEmpty())}">
+            <h2 th:text="#{entry.list.table.title}">List Of Entries</h2>
+            <div class="table">
+                <table class="table table-hover">
+                    <tr>
+                        <th scope="col" data-th-text="#{entry.list.secondname.label}">Second Name</th>
+                        <th scope="col" data-th-text="#{entry.list.firstname.label}">First Name</th>
+                        <th scope="col" data-th-text="#{entry.list.patronymic.label}">Patronymic</th>
+                        <th scope="col" data-th-text="#{entry.list.mobile.label}">Mobile</th>
+                        <th scope="col" data-th-text="#{entry.list.tel.label}">Tel</th>
+                        <th scope="col" data-th-text="#{entry.list.address.label}">Address</th>
+                        <th scope="col" data-th-text="#{entry.list.email.label}">Email</th>
+                        <th scope="col" data-th-text="#{entry.list.action.label}">Action</th>
+                    </tr>
+                    <tr data-th-each="entry : ${entries}">
+                        <td data-th-text="${entry.secondName}">Second name</td>
+                        <td data-th-text="${entry.firstName}">First name</td>
+                        <td data-th-text="${entry.patronymic}">Patronymic</td>
+                        <td data-th-text="${entry.mobile}">Mobile</td>
+                        <td data-th-text="${entry.tel}">Tel</td>
+                        <td data-th-text="${entry.address}">Address</td>
+                        <td data-th-text="${entry.email}">Email</td>
+                        <td>
+                            <a href="#" data-th-href="@{/edit(id=${entry.id})}">edit</a> |
+                            <a href="#" data-th-href="@{/delete(id=${entry.id})}" onclick="del(href)">delete</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-xs-12" th:unless="${!(entries.isEmpty())}">
+            <p data-th-text="#{entry.list.emptylist.label}" align="center">No entries</p>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+            <p style="padding:20px;"></p>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/layout :: footer">
+    Footer
+</div>
+
+</body>
+</html>

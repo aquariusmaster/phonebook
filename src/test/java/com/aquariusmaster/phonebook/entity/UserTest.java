@@ -60,6 +60,7 @@ public class UserTest extends TestCase {
         user.setUsername("usver");
         user.setPassword("passpass");
         user.setFullname("Андрей");
+        user.setEmail("aquariusmaster@yandex.ru");
         user.setEnabled(true);
         user.setAuthority("USER");
         return user;
