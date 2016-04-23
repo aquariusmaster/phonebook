@@ -27,18 +27,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#" th:href="@{/entry}">Add entry</a></li>
-                    <li><a href="#" th:href="@{/}">Search</a></li>
+                    <li><a href="/entry" th:text="#{navbar.addentry}">Add entry</a></li>
+                    <li><a href="#" th:href="@{/}" th:text="#{navbar.search}">Search</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li th:if="${#authorization.expression('!isAuthenticated()')}" style="padding-right: 30px">
-                        <a href="/login" th:href="@{/login}">Sign in</a>
+                        <a href="/login" th:href="@{/login}"><span th:text="#{navbar.signin}">Sign in</span></a>
                     </li>
                     <li th:if="${#authorization.expression('isAuthenticated()')}">
-                        <p style="padding-top: 15px;color: gray;">Hi, <span th:utext="${#authentication.name}"></span></p>
+                        <p style="padding-top: 15px;color: gray;"><span th:text="#{navbar.hi}"></span>, <span th:utext="${#authentication.name}"></span>!</p>
                     </li>
                     <li th:if="${#authorization.expression('isAuthenticated()')}" style="padding-right: 30px">
-                        <a href="/logout" th:href="@{/logout}">Logout</a>
+                        <a href="/logout" th:href="@{/logout}" th:text="#{navbar.loguot}">Logout</a>
                     </li>
                 </ul>
 
@@ -51,7 +51,7 @@
 </div>
 <!--/.nav-collapse -->
 
-<div th:fragment="footer" align="center" style="position: absolute; left: 0; bottom: 0; width: 100%;" >
+<div th:fragment="footer" align="center" style="position: absolute; left: 0; bottom: 0; width: 100%; padding: 0 10px 10px; background: #f8f8f8;" >
 
     &copy; 2016 Aquariusmaster
     <script th:src="@{/resources/js/jquery.min.js}"></script>

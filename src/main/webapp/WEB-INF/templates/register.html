@@ -13,6 +13,7 @@
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <title th:text="#{register.signup}"></title>
 </head>
 <body>
     <div class="container">
@@ -20,8 +21,8 @@
             <div class="col-md-4 col-md-offset-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Sign Up</h3>
-                        <div style="float:right; font-size: 85%; position: relative; top:-10px"><a th:href="@{/login}" >Sign In</a></div>
+                        <h3 class="panel-title" th:text="#{register.signup}">Sign Up</h3>
+                        <div style="float:right; font-size: 85%; position: relative; top:-10px"><a th:href="@{/login}" th:text="#{register.signin}">Sign In</a></div>
 
                     </div>
                     <div class="panel-body">
@@ -30,7 +31,7 @@
                             <fieldset>
                                 <div class="form-group">
                                     <div th:class="${#fields.hasErrors('fullname')}? 'control-group error':'control-group'">
-                                        <label class="control-label" for="fullname">Fullname</label>
+                                        <label class="control-label" for="fullname" th:text="#{register.fullname}">Fullname</label>
 
                                         <div class="controls">
                                             <input type="text" th:field="*{fullname}" id="fullname"
@@ -43,7 +44,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div th:class="${#fields.hasErrors('username')}? 'control-group error':'control-group'">
-                                        <label class="control-label" for="username">Username</label>
+                                        <label class="control-label" for="username" th:text="#{register.username}">Username</label>
 
                                         <div class="controls">
                                             <input type="text" th:field="*{username}" id="username"
@@ -56,7 +57,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div th:class="${#fields.hasErrors('email')}? 'control-group error':'control-group'">
-                                        <label class="control-label" for="email">Email</label>
+                                        <label class="control-label" for="email" th:text="#{register.email}">Email</label>
 
                                         <div class="controls">
                                             <input type="text" th:field="*{email}" id="email" class="form-control"/>
@@ -69,7 +70,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div th:class="${#fields.hasErrors('password')}? 'control-group error':'control-group'">
-                                        <label class="control-label" for="password">Password</label>
+                                        <label class="control-label" for="password" th:text="#{register.password}">Password</label>
 
                                         <div class="controls">
                                             <input type="password" th:field="*{password}" id="password"
@@ -81,7 +82,7 @@
                                     </div>
                                 </div>
 
-                                <input class="btn btn-info btn-block" type="submit" value="Signup"/>
+                                <input class="btn btn-info btn-block" type="submit" th:value="#{register.signup}"/>
                             </fieldset>
 
 

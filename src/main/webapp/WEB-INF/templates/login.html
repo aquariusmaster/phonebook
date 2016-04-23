@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +13,7 @@
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <title>Login</title>
 </head>
 <body>
 
@@ -22,7 +23,7 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Login at site</h3>
+                    <h3 class="panel-title" th:text="#{login.title}">Login at site</h3>
 
                     <div th:if="${loginError}" class="alert alert-danger">Wrong user or password</div>
                 </div>
@@ -30,26 +31,25 @@
                     <form accept-charset="UTF-8" role="form" th:action="@{/j_spring_security_check}" method="post">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Username" name="username" type="text" autofocus="autofocus"/>
+                                <input class="form-control" th:placeholder="#{login.username}" name="username" type="text" autofocus="autofocus"/>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password"
+                                <input class="form-control" th:placeholder="#{login.password}" name="password" type="password"
                                        value=""/>
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input name="_spring_security_remember_me" type="checkbox" value="Remember Me"/>
-                                    Remember me
+                                    <input name="_spring_security_remember_me" type="checkbox" th:text="#{login.rememberme}"/>
                                 </label>
                             </div>
-                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Login"/>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" th:value="#{login.login}"/>
                         </fieldset>
                         <div class="form-group">
                             <div class="col-md-12 control">
-                                <div style="padding-top:15px; font-size:85%" >
-                                    Don't have an account!
+                                <div style="padding-top:15px; font-size:85%">
+                                    <span th:text="#{login.donthaveaccount}">Don't have an account!</span>
                                     <a href="/register">
-                                        Sign Up Here
+                                        <span th:text="#{login.signup}">Sign Up Here</span>
                                     </a>
                                 </div>
                             </div>

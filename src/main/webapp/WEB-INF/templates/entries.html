@@ -52,8 +52,8 @@
                         <td data-th-text="${entry.address}">Address</td>
                         <td data-th-text="${entry.email}">Email</td>
                         <td>
-                            <a href="#" data-th-href="@{/edit(id=${entry.id})}">edit</a> |
-                            <a href="#" data-th-href="@{/delete(id=${entry.id})}" onclick="del(href)">delete</a>
+                            <a href="#" data-th-href="@{/edit(id=${entry.id})}" th:text="#{entries.edit}">edit</a> |
+                            <a href="#" data-th-href="@{/delete(id=${entry.id})}" onclick="del(href)" th:text="#{entries.delete}">delete</a>
                         </td>
                     </tr>
                 </table>

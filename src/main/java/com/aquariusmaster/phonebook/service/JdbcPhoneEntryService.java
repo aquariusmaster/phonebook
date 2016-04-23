@@ -39,4 +39,8 @@ public class JdbcPhoneEntryService implements PhoneEntryService {
     public PhoneEntry getPhoneEntry(long id) {
         return entryDao.getPhoneEntry(id);
     }
+
+    public List<PhoneEntry> searchPhoneEntry(String search,String username) {
+        return entryDao.searchPhoneEntries(search, username);
+    }
 }

@@ -15,4 +15,5 @@ public interface PhoneEntryService {
     boolean update(PhoneEntry phoneEntry);
     boolean delete(long id);
     PhoneEntry getPhoneEntry(long id);
+    List<PhoneEntry> searchPhoneEntry(String search, String username);
 }

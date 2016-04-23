@@ -15,4 +15,5 @@ public interface PhoneEntryDao {
     boolean update(PhoneEntry phoneEntry);
     boolean delete(long id);
     PhoneEntry getPhoneEntry(long id);
+    List<PhoneEntry> searchPhoneEntries(String search, String username);
 }

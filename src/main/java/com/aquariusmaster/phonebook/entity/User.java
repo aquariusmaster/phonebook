@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 public class User {
 
     @Size(min=5)
-    @Pattern(regexp = "[a-z]{3,}")
+    @Pattern(regexp = "[a-zA-Z]{3,}")
     private String username;
     @Size(min=5)
     private String password;

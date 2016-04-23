@@ -41,6 +41,12 @@ public class JdbcPhoneEntryDao implements PhoneEntryDao {
         String SQL = "select * from entries, users where entries.username=users.username and users.enabled=true and id=:id";
         return jdbcTemplate.queryForObject(SQL, params, new PhoneEntryMapper());
     }
+
+    public List<PhoneEntry> searchPhoneEntries(String search, String username) {
+        String SQL = "select * from (select * from entries, users where entries.username=users.username and users.enabled=true and entries.username=:username) where ";
+        return jdbcTemplate.query(SQL, new MapSqlParameterSource("username", username), new PhoneEntryMapper());
+    }
+
     @Transactional
     public boolean save(PhoneEntry phoneEntry) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(phoneEntry);

@@ -108,6 +108,14 @@ public class JdbcPhoneEntryDaoTest extends TestCase {
         assertEquals(0, phoneEntryDao.getAllPhoneEntry().size());
     }
 
+    @Test
+    public void testSearchEntry(){
+
+        String search = "66";
+        phoneEntryDao.searchPhoneEntries(search);
+    }
+
+
     static PhoneEntry getPhoneEntry(){
         PhoneEntry entry = new PhoneEntry();
         entry.setSecondName("Алексеев");
@@ -121,4 +129,6 @@ public class JdbcPhoneEntryDaoTest extends TestCase {
 
         return entry;
     }
+
+
 }

@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/head :: head">
-    <title>List of phone entries</title>
+</head>
+<head th:include="fragments/head :: head">
+    <title th:text="#{entry.edit.entry.title}">Edit entry</title>
 </head>
 <body>
 <div th:include="fragments/layout :: header"></div>
@@ -10,67 +12,67 @@
 <div class="container">
     <div class="row row-content">
         <div class="col-xs-12">
-            <h3>Edit Phone entry</h3>
+            <h3 style="padding:20px;" th:text="#{entry.edit.entry.title}">Edit Phone entry</h3>
         </div>
         <div class="col-xs-12 col-sm-9">
             <form class="form-horizontal" accept-charset="UTF-8" role="form" th:object="${entry}" th:action="@{/edit}" method="post">
 
                 <input type="hidden" th:field="${entry.id}" name="id" id="id"/>
                 <div class="form-group">
-                    <label for="secondName" class="col-sm-2 control-label">Second Name</label>
+                    <label for="secondName" class="col-sm-2 control-label" th:text="#{entry.list.secondname.label}">Second Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="secondName" name="secondName" placeholder="Enter Second Name" th:value="${entry.secondName}">
+                        <input type="text" class="form-control" id="secondName" name="secondName" th:placeholder="#{entry.edit.secondname.placeholder}" th:value="${entry.secondName}">
                         <span th:if="${#fields.hasErrors('secondName')}" th:errors="*{secondName}"
                               class="help-inline label-danger">Incorrect data</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="firstName" class="col-sm-2 control-label">First Name</label>
+                    <label for="firstName" class="col-sm-2 control-label" th:text="#{entry.list.firstname.label}">First Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="firstName" name="firstName" th:value="${entry.firstName}" placeholder="Enter First Name">
+                        <input type="text" class="form-control" id="firstName" name="firstName" th:value="${entry.firstName}" th:placeholder="#{entry.edit.firstname.placeholder}">
                         <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
                               class="help-inline label-danger">Incorrect data</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="patronymic" class="col-sm-2 control-label">Patronymic</label>
+                    <label for="patronymic" class="col-sm-2 control-label" th:text="#{entry.list.patronymic.label}">Patronymic</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="patronymic" name="patronymic" th:value="${entry.patronymic}" placeholder="Enter your Patronymic">
+                        <input type="text" class="form-control" id="patronymic" name="patronymic" th:value="${entry.patronymic}" th:placeholder="#{entry.edit.patronymic.placeholder}">
                         <span th:if="${#fields.hasErrors('patronymic')}" th:errors="*{patronymic}" class="help-inline label-danger">Incorrect data</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="mobile" class="col-sm-2 control-label">Mobile number</label>
+                    <label for="mobile" class="col-sm-2 control-label" th:text="#{entry.list.mobile.label}">Mobile number</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="mobile" name="mobile" th:value="${entry.mobile}" placeholder="In format +380(XX)XXXXXXX">
+                        <input type="text" class="form-control" id="mobile" name="mobile" th:value="${entry.mobile}" th:placeholder="#{entry.edit.mobile.placeholder}">
                         <span th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}" class="help-inline label-danger">Incorrect data</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="tel" class="col-sm-2 control-label">Tel.</label>
+                    <label for="tel" class="col-sm-2 control-label" th:text="#{entry.list.tel.label}">Tel.</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="tel" name="tel" th:value="${entry.tel}" placeholder="Not required">
+                        <input type="text" class="form-control" id="tel" name="tel" th:value="${entry.tel}" th:placeholder="#{entry.edit.tel.placeholder}">
                         <span th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}" class="help-inline label-danger">Incorrect data</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="address" class="col-sm-2 control-label">Address</label>
+                    <label for="address" class="col-sm-2 control-label" th:text="#{entry.list.address.label}">Address</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="address" name="address" th:value="${entry.address}" placeholder="Not required">
+                        <input type="text" class="form-control" id="address" name="address" th:value="${entry.address}" th:placeholder="#{entry.edit.address.placeholder}">
                         <span th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="help-inline label-danger">Incorrect data</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">Email</label>
+                    <label for="email" class="col-sm-2 control-label" th:text="#{entry.list.email.label}">Email</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="email" name="email" th:value="${entry.email}" placeholder="Enter Your Email">
+                            <input type="text" class="form-control" id="email" name="email" th:value="${entry.email}" th:placeholder="#{entry.edit.email.placeholder}">
                         <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="help-inline label-danger">Incorrect data</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10 col-md-offset-2">
-                        <button type="submit" class="btn btn-primary">Save  </button>
-                        <button type="button" class="btn btn-primary" th:href="@{/}">Cancel</button>
+                        <button type="submit" class="btn btn-primary" th:text="#{entry.list.save.label}">Save  </button>
+                        <a class="btn btn-primary" th:href="@{/}" th:text="#{entry.edit.cancel}">Cancel</a>
                     </div>
                 </div>
             </form>

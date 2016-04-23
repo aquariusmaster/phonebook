@@ -68,7 +68,7 @@ public class PhoneEntryController {
         entry.setUsername(username);
         entryService.save(entry);
 
-        return "entry-success";
+        return "forward:/?mes=Entry saved.";
     }
 
     @RequestMapping(value = "/edit")
@@ -109,7 +109,7 @@ public class PhoneEntryController {
         }else{
             message= "Can't delete";
         }
-        return "forward:/?mes=" + message;
+        return "forward:/?mes=Entry deleted";
     }
 
 

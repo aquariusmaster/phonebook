@@ -58,6 +58,7 @@ public class UserController {
     public String signUp(Model model, @Valid User user, BindingResult result) {
 
         if(result.hasErrors()) {
+            System.out.println(result);
             return "register";
         }
 
