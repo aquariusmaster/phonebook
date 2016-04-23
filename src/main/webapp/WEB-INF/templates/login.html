@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
+    <link th:href="@{/resources/css/signin.css}" rel="stylesheet" />
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Login at site</h3>
+
+                    <div th:if="${loginError}" class="alert alert-danger">Wrong user or password</div>
+                </div>
+                <div class="panel-body">
+                    <form accept-charset="UTF-8" role="form" th:action="@{/j_spring_security_check}" method="post">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Username" name="username" type="text" autofocus="autofocus"/>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="password" type="password"
+                                       value=""/>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="_spring_security_remember_me" type="checkbox" value="Remember Me"/>
+                                    Remember me
+                                </label>
+                            </div>
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Login"/>
+                        </fieldset>
+                        <div class="form-group">
+                            <div class="col-md-12 control">
+                                <div style="padding-top:15px; font-size:85%" >
+                                    Don't have an account!
+                                    <a href="/register">
+                                        Sign Up Here
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
