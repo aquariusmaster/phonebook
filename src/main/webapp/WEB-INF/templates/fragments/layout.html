@@ -28,7 +28,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/entry" th:text="#{navbar.addentry}">Add entry</a></li>
-                    <li><a href="#" th:href="@{/}" th:text="#{navbar.search}">Search</a></li>
+                    <li>
+                        <div style="padding-top: 11px">
+                            <form class="form-inline" action="/search" method="get">
+                                <input type="text" name="q" placeholder="Search">
+                            </form>
+                        </div>
+
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li th:if="${#authorization.expression('!isAuthenticated()')}" style="padding-right: 30px">

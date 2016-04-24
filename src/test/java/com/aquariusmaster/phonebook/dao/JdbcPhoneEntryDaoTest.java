@@ -111,8 +111,22 @@ public class JdbcPhoneEntryDaoTest extends TestCase {
     @Test
     public void testSearchEntry(){
 
-        String search = "66";
-        phoneEntryDao.searchPhoneEntries(search);
+
+        String search = "sadadaa";
+        String username = getPhoneEntry().getUsername();
+        assertEquals(1, phoneEntryDao.getPhoneEntries(username).size());
+        List<PhoneEntry> entries = phoneEntryDao.searchPhoneEntries(search, username);
+        assertEquals(1, entries.size());
+        PhoneEntry entry = getPhoneEntry();
+        User user = JdbcUserDaoTest.setupUser();
+        phoneEntryDao.save(entry);
+        assertEquals(2, phoneEntryDao.getPhoneEntries(username).size());
+        entries = phoneEntryDao.searchPhoneEntries(search, username);
+        assertEquals(2, entries.size());
+
+        System.out.println("List for user " + phoneEntryDao.getPhoneEntries(username));
+        System.out.println("List for user and query " + phoneEntryDao.searchPhoneEntries(search, username));
+
     }
 
 

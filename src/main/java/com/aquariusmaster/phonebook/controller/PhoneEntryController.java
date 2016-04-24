@@ -42,7 +42,6 @@ public class PhoneEntryController {
         String username = auth.getName();
         model.addAttribute("entries", entryService.getPhoneEntries(username));
         model.addAttribute("message", message);
-        System.out.println(message);
         return "entries";
     }
 
@@ -57,7 +56,6 @@ public class PhoneEntryController {
     @RequestMapping(value = "/entry", method = RequestMethod.POST)
     public String createEntry(Model model, @Valid @ModelAttribute("entry") PhoneEntry entry, BindingResult result) {
 
-        System.out.println("Username: " + entry.getUsername());
         if (result.hasErrors()){
             System.out.println("errors");
             System.out.println(result);
@@ -74,8 +72,6 @@ public class PhoneEntryController {
     @RequestMapping(value = "/edit")
     public String updateEntry(Model model, @RequestParam(value = "id", required = true) Long id) {
 
-        System.out.println("Id=" + id);
-
         PhoneEntry entry = entryService.getPhoneEntry(id);
         model.addAttribute("entry", entry);
         return "entry-edit";
@@ -84,14 +80,12 @@ public class PhoneEntryController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editEntry(Model model, @Valid @ModelAttribute("entry") PhoneEntry entry, BindingResult result) {
 
-        System.out.println("Edit Username: " + entry.getUsername());
         if (result.hasErrors()){
             System.out.println("Edit errors");
             System.out.println(result);
             return "entry-edit";
         }
-        System.out.println("Edit id=" + entry.getId());
-        System.out.println("Edit username=" + entry.getUsername());
+
         entryService.update(entry);
 
         return "forward:/?mes=Edited successfull!";
@@ -100,10 +94,8 @@ public class PhoneEntryController {
     @RequestMapping(value = "/delete")
     public String deleteEntry(Model model, @RequestParam(value = "id", required = true) Long id) {
 
-        System.out.println("Delete Id=" + id);
         String message = null;
         boolean isDeleted = entryService.delete(id);
-        System.out.println("Is deleted " + isDeleted);
         if (isDeleted){
             message = "Success deleted entry";
         }else{
@@ -112,5 +104,15 @@ public class PhoneEntryController {
         return "forward:/?mes=Entry deleted";
     }
 
+    @RequestMapping("/search")
+    public String addEntry(Model model, @RequestParam(value = "q", required = false) String q) {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        List<PhoneEntry> entries = entryService.searchPhoneEntry(q, username);
+        model.addAttribute("entries", entries);
+        model.addAttribute("message", "search results");
+        return "entries";
+    }
 
 }

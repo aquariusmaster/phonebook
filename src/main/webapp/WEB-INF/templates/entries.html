@@ -8,12 +8,12 @@
     <script th:src="@{/resources/js/jquery.min.js}"></script>
     <script>
         function del(href){
-            var doDelete = confirm("Are you sure you want to delete this offer?");
+            var doDelete = confirm("Are you sure you want to delete this entry?");
 
             if(doDelete == false) {
                 event.preventDefault();
             }else{
-                location.href=href
+                location.href=href;
             }
         }
     </script>

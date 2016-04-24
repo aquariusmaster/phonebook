@@ -5,7 +5,9 @@ import com.aquariusmaster.phonebook.entity.PhoneEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by harkonnen on 18.04.16.
@@ -41,6 +43,8 @@ public class JdbcPhoneEntryService implements PhoneEntryService {
     }
 
     public List<PhoneEntry> searchPhoneEntry(String search,String username) {
+        List<PhoneEntry> entries = entryDao.searchPhoneEntries(search, username);
+        Set<PhoneEntry> entriesSet = new HashSet<PhoneEntry>(entries);
         return entryDao.searchPhoneEntries(search, username);
     }
 }

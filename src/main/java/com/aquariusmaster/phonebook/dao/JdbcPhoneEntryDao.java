@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.management.Query;
 import javax.sql.DataSource;
 import java.util.*;
 
@@ -43,14 +44,23 @@ public class JdbcPhoneEntryDao implements PhoneEntryDao {
     }
 
     public List<PhoneEntry> searchPhoneEntries(String search, String username) {
-        String SQL = "select * from (select * from entries, users where entries.username=users.username and users.enabled=true and entries.username=:username) where ";
-        return jdbcTemplate.query(SQL, new MapSqlParameterSource("username", username), new PhoneEntryMapper());
+
+        String SQL = "select * from entries, users where users.enabled=true " +
+                "and entries.username=:username " +
+                "and concat(secondName, firstName, patronymic, mobile, tel, " +
+                "address, entries.email) like :search";
+
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("username", username);
+        params.addValue("search", "%" + search + "%");
+        return jdbcTemplate.query(SQL, params, new PhoneEntryMapper());
     }
 
     @Transactional
     public boolean save(PhoneEntry phoneEntry) {
         BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(phoneEntry);
-        String SQL = "insert into entries (secondName, firstName, patronymic, mobile, tel, address, email, username) values (:secondName, :firstName, :patronymic, :mobile, :tel, :address, :email, :username)";
+        String SQL = "insert into entries (secondName, firstName, patronymic, mobile, tel, address, email, username) " +
+                "values (:secondName, :firstName, :patronymic, :mobile, :tel, :address, :email, :username)";
 
         return jdbcTemplate.update(SQL, params) == 1;
     }

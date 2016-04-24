@@ -10,9 +10,12 @@
 
     <http>
         <intercept-url pattern="/login" access="permitAll"/>
+        <intercept-url pattern="/logout" access="permitAll"/>
         <intercept-url pattern="/register" access="permitAll"/>
         <intercept-url pattern="/resources/**" access="permitAll"/>
-        <intercept-url pattern="/**" access="hasRole('USER')"/>
+        <intercept-url pattern="favicon.ico" access="permitAll" />
+        <intercept-url pattern="/denied" access="permitAll" />
+        <intercept-url pattern="/**" access="hasAnyRole('USER, ADMIN')"/>
 
         <form-login login-page="/login"
                     authentication-failure-url="/login?error=true"

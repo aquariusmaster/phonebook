@@ -68,7 +68,7 @@ public class PhoneEntryTest extends TestCase {
         assertTrue(violations.isEmpty());
 
         ivanov.setFirstName("Ива");
-        ivanov.setEmail("mail@mail.ru");
+        ivanov.setEmail("mail@mailru");
         ivanov.setMobile("12");
 
         violations = validator.validate(ivanov);
