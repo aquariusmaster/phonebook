@@ -27,7 +27,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/entry" th:text="#{navbar.addentry}">Add entry</a></li>
+                    <li><a href="/entry" th:href="@{entry(action='new')}" th:text="#{navbar.addentry}">Add entry</a></li>
                     <li>
                         <div style="padding-top: 11px">
                             <form class="form-inline" action="/search" method="get">

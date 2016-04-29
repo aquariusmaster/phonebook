@@ -26,8 +26,15 @@ public class JdbcPhoneEntryService implements PhoneEntryService {
         return entryDao.getPhoneEntries(username);
     }
 
-    public boolean save(PhoneEntry phoneEntry) {
-        return entryDao.save(phoneEntry);
+    public boolean saveOrUpdate(PhoneEntry phoneEntry) {
+
+        if (phoneEntry.getId() == 0) {
+            return entryDao.save(phoneEntry);
+        }
+        if (phoneEntry.getId() != 0){
+            return entryDao.update(phoneEntry);
+        }
+        return false;
     }
 
     public boolean update(PhoneEntry phoneEntry) {

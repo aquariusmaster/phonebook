@@ -11,7 +11,7 @@ public interface PhoneEntryService {
 
     List<PhoneEntry> getAllPhoneEntry();
     List<PhoneEntry> getPhoneEntries(String username);
-    boolean save(PhoneEntry phoneEntry);
+    boolean saveOrUpdate(PhoneEntry phoneEntry);
     boolean update(PhoneEntry phoneEntry);
     boolean delete(long id);
     PhoneEntry getPhoneEntry(long id);

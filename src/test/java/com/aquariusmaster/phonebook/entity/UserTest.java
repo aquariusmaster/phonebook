@@ -50,8 +50,6 @@ public class UserTest extends TestCase {
         System.out.println(violations);
         assertEquals(3, violations.size());
 
-
-
     }
 
     static User setupUser(){

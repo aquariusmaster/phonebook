@@ -46,10 +46,19 @@ public class PhoneEntryController {
     }
 
     @RequestMapping("/entry")
-    public String addEntry(Model model) {
+    public String addEntry(Model model, @RequestParam(value = "action", required = false) String action,
+                           @RequestParam(value = "id", required = false) Long id) {
 
-        PhoneEntry entry = new PhoneEntry();
-        model.addAttribute("entry", entry);
+        if(action == null || action.equals("new")){
+            PhoneEntry newEntry = new PhoneEntry();
+            model.addAttribute("entry", newEntry);
+            return "entry";
+        }
+        if (action != null && action.equals("edit") && id != null){
+            PhoneEntry savedEntry = entryService.getPhoneEntry(id);
+            model.addAttribute("entry", savedEntry);
+            return "entry";
+        }
         return "entry";
     }
 
@@ -64,31 +73,9 @@ public class PhoneEntryController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         entry.setUsername(username);
-        entryService.save(entry);
+        entryService.saveOrUpdate(entry);
 
         return "forward:/?mes=Entry saved.";
-    }
-
-    @RequestMapping(value = "/edit")
-    public String updateEntry(Model model, @RequestParam(value = "id", required = true) Long id) {
-
-        PhoneEntry entry = entryService.getPhoneEntry(id);
-        model.addAttribute("entry", entry);
-        return "entry-edit";
-    }
-
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editEntry(Model model, @Valid @ModelAttribute("entry") PhoneEntry entry, BindingResult result) {
-
-        if (result.hasErrors()){
-            System.out.println("Edit errors");
-            System.out.println(result);
-            return "entry-edit";
-        }
-
-        entryService.update(entry);
-
-        return "forward:/?mes=Edited successfull!";
     }
 
     @RequestMapping(value = "/delete")
