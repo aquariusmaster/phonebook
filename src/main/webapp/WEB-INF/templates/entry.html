@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/head :: head">
+    <title>List of phone entries</title>
 </head>
 <head>
     <title>List of phone entries</title>
@@ -12,8 +13,9 @@
 <div class="container">
     <div class="row row-content">
         <div class="col-xs-12">
-            <h3 th:text="#{entry.add.entry.title}">Add new Phone entry</h3>
+            <h3 th:text="#{entry.add.entry.title}" style="padding:20px;">Add new Phone entry</h3>
         </div>
+
         <div class="col-xs-12 col-sm-9">
             <form class="form-horizontal" accept-charset="UTF-8" role="form" th:object="${entry}" th:action="@{/entry}" method="post">
 
