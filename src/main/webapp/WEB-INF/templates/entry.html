@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/head :: head">
-    <title>List of phone entries</title>
-</head>
 <head>
-    <title>List of phone entries</title>
+    <title th:text="#{entry.add.entry.title}">Add/Edit Phone Entry</title>
+    <object th:include="fragments/head :: head" th:remove="tag"/>
 </head>
 <body>
-<div th:include="fragments/layout :: header"></div>
+<div th:replace="fragments/layout :: header"></div>
 <div style="padding-top: 60px"></div>
 <div class="container">
     <div class="row row-content">

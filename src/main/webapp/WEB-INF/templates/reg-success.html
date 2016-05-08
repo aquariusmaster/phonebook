@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/head :: head">
+<head>
     <title>Success</title>
+    <object th:include="fragments/head :: head" th:remove="tag"/>
 </head>
 <body>
-<div th:include="fragments/layout :: header"></div>
+<div th:replace="fragments/layout :: header"></div>
 <div style="padding-top: 60px"></div>
 <p style="padding: 30px;" th:text="#{register.welcome}">Sign up success!</p>
 </body>

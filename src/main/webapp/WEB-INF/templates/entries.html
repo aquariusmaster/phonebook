@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/head :: head">
-</head>
 <head>
+    <object th:include="fragments/head :: head" th:remove="tag"/>
     <title>List of phone entries</title>
     <script th:src="@{/resources/js/jquery.min.js}"></script>
     <script>
@@ -17,9 +16,10 @@
             }
         }
     </script>
+
 </head>
 <body>
-<div th:include="fragments/layout :: header"></div>
+<div th:replace="fragments/layout :: header"></div>
 <div style="padding-top: 60px"></div>
 <div class="container">
     <div class="row row-content">

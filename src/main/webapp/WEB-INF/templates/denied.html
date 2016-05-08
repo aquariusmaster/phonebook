@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments/head :: head">
-    <title>Success</title>
-</head>
 <head>
-    <title th:text="#{login.denied}">Success</title>
+    <title th:text="#{login.denied}">Denied</title>
+    <object th:include="fragments/head :: head" th:remove="tag"/>
 </head>
 <body>
 <div th:include="fragments/layout :: header"></div>

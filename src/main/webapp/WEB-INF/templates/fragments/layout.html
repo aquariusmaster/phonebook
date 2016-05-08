@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
-<head th:fragment="headerFragment">
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Phone book</title>
     <link rel="stylesheet" href="../../../resources/css/bootstrap.css" th:href="@{/resources/css/bootstrap.css}"/>
-
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width"/>
 
 </head>
-
 <body>
-<div th:fragment="header">
-
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav th:fragment="header" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -55,11 +50,11 @@
             </div>
             <!--/.nav-collapse -->
         </div>
+    </nav>
 
 
 
-</div>
-<!--/.nav-collapse -->
+
 
 <div th:fragment="footer" align="center" style="position: absolute; left: 0; bottom: 0; width: 100%; padding: 0 10px 10px; background: #f8f8f8;" >
 
