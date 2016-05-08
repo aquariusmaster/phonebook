@@ -4,7 +4,7 @@
 <head th:fragment="headerFragment">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Phone book</title>
-    <link rel="stylesheet" href="../../../assets/css/bootstrap.css" th:href="@{/resources/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../../../resources/css/bootstrap.css" th:href="@{/resources/css/bootstrap.css}"/>
 
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width"/>
@@ -29,20 +29,23 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/entry" th:href="@{entry(action='new')}" th:text="#{navbar.addentry}">Add entry</a></li>
                     <li>
-                        <div style="padding-top: 11px">
-                            <form class="form-inline" action="/search" method="get">
-                                <input type="text" name="q" placeholder="Search">
-                            </form>
+                        <div>
+				            <form class="navbar-form navbar-left" role="search" action="search" method="get">
+  					            <div class="form-group">
+    					        <input type="text" name="q" class="form-control" placeholder="Search">
+  					            </div>
+  					            <button type="submit" class="btn btn-default">Search</button>
+				            </form>
                         </div>
 
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li th:if="${#authorization.expression('!isAuthenticated()')}" style="padding-right: 30px">
+                    <li th:if="${#authorization.expression('!isAuthenticated()')}">
                         <a href="/login" th:href="@{/login}"><span th:text="#{navbar.signin}">Sign in</span></a>
                     </li>
                     <li th:if="${#authorization.expression('isAuthenticated()')}">
-                        <p style="padding-top: 15px;color: gray;"><span th:text="#{navbar.hi}"></span>, <span th:utext="${#authentication.name}"></span>!</p>
+                        <p class="navbar-text navbar-right"><span th:text="#{navbar.hi} + ', '"></span><span th:text="${#authentication.name + '!&nbsp;'}"></span></p>
                     </li>
                     <li th:if="${#authorization.expression('isAuthenticated()')}" style="padding-right: 30px">
                         <a href="/logout" th:href="@{/logout}" th:text="#{navbar.loguot}">Logout</a>
