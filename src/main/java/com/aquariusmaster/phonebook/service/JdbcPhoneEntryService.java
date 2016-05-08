@@ -50,8 +50,7 @@ public class JdbcPhoneEntryService implements PhoneEntryService {
     }
 
     public List<PhoneEntry> searchPhoneEntry(String search,String username) {
-        List<PhoneEntry> entries = entryDao.searchPhoneEntries(search, username);
-        Set<PhoneEntry> entriesSet = new HashSet<PhoneEntry>(entries);
+
         return entryDao.searchPhoneEntries(search, username);
     }
 }

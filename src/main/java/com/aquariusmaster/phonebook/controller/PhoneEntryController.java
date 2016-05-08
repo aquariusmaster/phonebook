@@ -98,7 +98,7 @@ public class PhoneEntryController {
         String username = auth.getName();
         List<PhoneEntry> entries = entryService.searchPhoneEntry(q, username);
         model.addAttribute("entries", entries);
-        model.addAttribute("message", "search results");
+        model.addAttribute("message", "search results: " + entries.size());
         return "entries";
     }
 

@@ -11,9 +11,12 @@
 
             if(doDelete == false) {
                 event.preventDefault();
+                event.stopPropagation();
+                return;
             }else{
                 location.href=href;
             }
+            return false;
         }
     </script>
 
@@ -52,8 +55,8 @@
                         <td data-th-text="${entry.address}">Address</td>
                         <td data-th-text="${entry.email}">Email</td>
                         <td>
-                            <a href="#" data-th-href="@{/entry(action='edit',id=${entry.id})}" th:text="#{entries.edit}">edit</a> |
-                            <a href="#" data-th-href="@{/delete(id=${entry.id})}" onclick="del(href)" th:text="#{entries.delete}">delete</a>
+                            <a href="#" th:href="@{/entry(action='edit',id=${entry.id})}" th:text="#{entries.edit}">edit</a> |
+                            <a href="#" th:href="@{/delete(id=${entry.id})}" onclick="return confirm('Delete this entry?') ? true : false;" th:text="#{entries.delete}">delete</a>
                         </td>
                     </tr>
                 </table>
